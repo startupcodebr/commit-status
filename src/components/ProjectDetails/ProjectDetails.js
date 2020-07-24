@@ -6,7 +6,7 @@ const params = {};
 
 if (process.env.REACT_APP_GITHUB_TOKEN) {
   params.headers = {
-    Authorization: process.env.REACT_APP_GITHUB_TOKEN,
+    Authorization: `token ${process.env.REACT_APP_GITHUB_TOKEN}`,
   };
 }
 

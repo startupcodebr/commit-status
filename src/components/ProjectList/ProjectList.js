@@ -60,13 +60,13 @@ export default class ProjectList extends React.Component {
 
     if (process.env.REACT_APP_GITHUB_TOKEN) {
       params.headers = {
-        Authorization: process.env.REACT_APP_GITHUB_TOKEN,
+        Authorization: `token ${process.env.REACT_APP_GITHUB_TOKEN}`,
       };
     }
 
     let promiseArray = this.state.projects.map(project => {
       return axios.get(
-        `https://api.github.com/repos/${project.name}/commits/master/status`,
+        `https://api.github.com/repos/${project.name}/commits/current/status`,
         params
       );
     });

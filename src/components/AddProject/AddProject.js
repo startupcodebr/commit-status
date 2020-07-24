@@ -47,15 +47,16 @@ export default class AddProject extends React.Component {
     const params = {};
     if (process.env.REACT_APP_GITHUB_TOKEN) {
       params.headers = {
-        Authorization: process.env.REACT_APP_GITHUB_TOKEN,
+        Authorization: `token ${process.env.REACT_APP_GITHUB_TOKEN}`,
       };
     }
     axios
       .get(
-        `https://api.github.com/repos/${this.state.input}/commits/master/status`,
+        `https://api.github.com/repos/${this.state.input}/commits/current/status`,
         params
       )
       .then(data => {
+        console.log(data)
         let obj = {
           name: data.data.repository.full_name,
           status: data.data.state,
@@ -97,7 +98,7 @@ export default class AddProject extends React.Component {
               value={this.state.input}
               spellCheck="false"
               onChange={this.handleChange}
-              placeholder="sitture/commit-status"
+              placeholder=""
             />
             <img
               className="add-icon"
